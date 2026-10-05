@@ -156,3 +156,9 @@ dmypy.json
 install.lock
 
 .pdm-python
+
+# Local deployment staging and generated bundles
+/.deploy-requirements.txt
+/.deploy-runtime.tar.gz
+/.deploy-wheels/
+/deployment/
