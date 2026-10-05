@@ -28,11 +28,13 @@ def sentry_before_send(event, hint):
 
 
 sentry_sdk_report_time = time()
-sentry_sdk_git_hash = (
-    run("git rev-parse HEAD", stdout=PIPE, shell=True, check=True)
-    .stdout.decode()
-    .strip()
-)
+sentry_sdk_git_hash = None
+if Config.ERROR_REPORT:
+    sentry_sdk_git_hash = (
+        run("git rev-parse HEAD", stdout=PIPE, shell=True, check=True)
+        .stdout.decode()
+        .strip()
+    )
 
 # fixme: Not enough for dynamic disable sentry,
 #  web server will still report if pgm start with Config.ERROR_REPORT = True
