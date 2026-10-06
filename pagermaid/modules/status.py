@@ -21,7 +21,7 @@ from pagermaid.config import Config
 from pagermaid.enums import Client, Message
 from pagermaid.listener import listener
 from pagermaid.utils import lang, execute
-from pagermaid.version import pgm_version
+from pagermaid.version import pgm_version  # noqa: F401 -- retained module export
 
 DCs = {
     1: "149.154.175.50",

@@ -2,7 +2,6 @@ from typing import Optional
 
 import telethon
 from telethon.errors import MessageAuthorRequiredError
-from telethon.tl.patched import Message
 
 from pagermaid.dependence import add_delete_message_job, get_sudo_list
 from ..methods.get_dialogs_list import get_dialogs_list as get_dialogs_list_func

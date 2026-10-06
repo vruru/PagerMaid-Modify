@@ -128,7 +128,7 @@ async def pfp(bot: "Client", context: "Message"):
             await bot(UploadProfilePhotoRequest(file=await bot.upload_file(photo)))
             try:
                 remove(photo)
-            except:
+            except BaseException:
                 pass
             await context.edit("头像修改成功啦 ~")
             return

@@ -27,7 +27,7 @@ async def reload_all():
     help_messages.clear()
     all_permissions.clear()
     for functions in hook_functions.values():
-        functions.clear()  # noqa: clear all hooks
+        functions.clear()  # clear all hooks
 
     for module_name in pagermaid.modules.module_list:
         try:

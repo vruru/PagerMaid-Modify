@@ -1,5 +1,5 @@
 import python_socks
-import pyromod.listen
+import pyromod.listen  # noqa: F401 -- applies Telethon patches on import
 
 from telethon import TelegramClient
 from telethon.sessions import StringSession

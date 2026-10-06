@@ -19,6 +19,8 @@ def sentry_before_send(event, hint):
         # The user has been deleted/deactivated or session revoked
         SessionFileManager.safe_remove_session()
         sys.exit(1)
+    if not Config.ERROR_REPORT:
+        return None
     if time() <= sentry_sdk_report_time + 30:
         sentry_sdk_report_time = time()
         return None
@@ -36,14 +38,26 @@ if Config.ERROR_REPORT:
         .strip()
     )
 
-# fixme: Not enough for dynamic disable sentry,
-#  web server will still report if pgm start with Config.ERROR_REPORT = True
+def sentry_before_send_transaction(event, hint):
+    return event if Config.ERROR_REPORT else None
+
+
+def sentry_before_send_log(event, hint):
+    return event if Config.ERROR_REPORT else None
+
+
+def sentry_traces_sampler(sampling_context):
+    return 1.0 if Config.ERROR_REPORT else 0.0
+
+
 if Config.ERROR_REPORT:
     sentry_sdk.init(
         Config.SENTRY_API,
-        traces_sample_rate=1.0,
+        traces_sampler=sentry_traces_sampler,
         release=sentry_sdk_git_hash,
         before_send=sentry_before_send,
+        before_send_transaction=sentry_before_send_transaction,
+        before_send_log=sentry_before_send_log,
         environment="production",
         integrations=[
             HttpxIntegration(),

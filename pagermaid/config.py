@@ -136,7 +136,7 @@ class Config:
         try:
             with open(f"data{os.sep}alias.json", encoding="utf-8") as f:
                 alias_dict = load_json(f)
-        except Exception as e:
+        except Exception:
             alias_dict = {}
         web_interface = config.get("web_interface", {})
         WEB_ENABLE = strtobool(

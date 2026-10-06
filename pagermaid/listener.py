@@ -60,7 +60,6 @@ def listener(**args) -> CommandHandlerDecorator:
     args["incoming"] = incoming
     args["outgoing"] = outgoing
     ignore_edited = args.get("ignore_edited", False)
-    ignore_reacted = args.get("ignore_reacted", True)
     ignore_forwarded = args.get("ignore_forwarded", True if outgoing else False)
     is_plugin = args.get("is_plugin", True)
     groups_only = args.get("groups_only", False)

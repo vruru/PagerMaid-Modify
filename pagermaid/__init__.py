@@ -1,7 +1,7 @@
 import contextlib
 import warnings
 
-import pagermaid.update
+import pagermaid.update  # noqa: F401 -- registers update hooks on import
 from pagermaid.config import Config as _Config
 from pagermaid.utils import logs as _logs
 
